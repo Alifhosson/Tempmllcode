@@ -2,14 +2,22 @@
   "version": 2,
   "builds": [
     {
-      "src": "index.js",
+      "src": "api/proxy.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "api/temp-email.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "/index.js"
+      "src": "/proxy",
+      "dest": "/api/proxy.js"
+    },
+    {
+      "src": "/generate|/info",
+      "dest": "/api/temp-email.js"
     }
   ]
 }
